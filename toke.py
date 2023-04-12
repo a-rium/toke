@@ -108,12 +108,15 @@ def is_escape(c: str) -> bool:
     return c == '\\'
 
 
-def parse_tokens(text: str):
+def parse_tokens(text: str) -> list[Token]:
+    tokens = []
     state = STATE_0
     at = 0
     while at < len(text):
         state, at, token = ACTIONS[state](text, at)
-        print(token)
+        tokens.append(token)
+
+    return tokens
 
 
 def main() -> int:
